@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, CardImg, CardImgOverlay, CardText, CardBody,
+import { Card, CardImg, CardImgOverlay,
     CardTitle } from 'reactstrap';
 import DishDetail from './DishdetailComponent';
 
@@ -9,13 +9,15 @@ import DishDetail from './DishdetailComponent';
             super(props);
     
             this.state = {
-                selectedDish: null
+                selectedDish: null,
+                selectedComments: null
             }
         }
     
         onDishSelect(dish) {
             this.setState({ selectedDish: dish});
-        }
+            this.setState({ selectedComments: dish.comments});
+            }
     
        
     
@@ -39,15 +41,11 @@ import DishDetail from './DishdetailComponent';
                     <div className="row">
                         {menu}
                     </div>
-                    <div className="row">
-                      <div  className="col-12 col-md-5 m-1">
-                        <DishDetail selectedDish = {this.state.selectedDish}/>
-                      </div>
-                    </div>
+                    <DishDetail selectedDish = {this.state.selectedDish} selectedComments = {this.state.selectedComments}/>                  
                 </div>
             );
         }
-    }
+    };
   
 
 export default Menu;
