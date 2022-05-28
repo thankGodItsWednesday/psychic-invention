@@ -3,15 +3,7 @@ import { Card, CardImg, CardText, CardBody,
     CardTitle } from 'reactstrap';
 import Moment from 'moment';
 
-class DishDetail extends Component {
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            selectedDish: null
-        }
-    }   
+class DishDetail extends Component {   
 
     renderDish(dish) {
         if (dish != null)
@@ -34,8 +26,8 @@ class DishDetail extends Component {
         if (comments != null) {
             const dishComments = comments.map((comment) => {        
             return (
-                <div>
-                 <p key={comment.id}>{comment.comment}<br />
+                <div key={comment.id}>
+                 <p >{comment.comment}<br />
                 -- {comment.author} , {Moment(comment.date).format('MMMM Do YYYY')} </p>
                 </div>                       
                     )
@@ -57,19 +49,19 @@ class DishDetail extends Component {
 
     render() {
         const dish = this.props.dish;
-       if (dish != null)
-        return(
-            <div className='container'>
-                <div className='row'>
-                    <div className='col-12 col-md-5 m-1'>
-                        {this.renderDish(dish)}
+        if (dish != null)
+            return(
+                <div className='container'>
+                    <div className='row'>
+                        <div className='col-12 col-md-5 m-1'>
+                            {this.renderDish(dish)}
+                        </div>
+                        <div className='col-12 col-md-5 m-1'>
+                            {this.renderComments(dish.comments)}
+                        </div> 
                     </div>
-                    <div className='col-12 col-md-5 m-1'>
-                        {this.renderComments(dish.comments)}
-                    </div> 
                 </div>
-            </div>
-        );
+            );
         else
             return (
                 <div></div>
