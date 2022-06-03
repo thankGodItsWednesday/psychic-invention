@@ -45,11 +45,11 @@ const Main = () => {
     }
     
     const DishWithId = () => {
-      //const { dishId } = useMatch();
+      const { dishId } = useParams();
       //console.log( "dishId: ", dishId);
       return(
-          <DishDetail dish={dishes.filter((dish) => dish.id === 0)[0]} 
-            comments={comments.filter((comment) => comment.dishId === 0)} />
+          <DishDetail dish={dishes.filter((dish) => dish.id == dishId)[0]} 
+            comments={comments.filter((comment) => comment.dishId == dishId)} />
       );
     
     }
@@ -59,10 +59,10 @@ const Main = () => {
             <div>
               <Header />
               <Routes>
-                 <Route path="/home" element={ (HomePage)() } />
+                 <Route path="/home" element={ <HomePage /> } />
                  <Route exact path="/menu" element={ (() => <Menu dishes={dishes}/>)() } />
-                 <Route path="/menu/:dishId" element={(DishWithId)()} />
-                 <Route path="/contactus" element={ (Contact)() } />
+                 <Route path="/menu/:dishId" element={<DishWithId />} />
+                 <Route path="/contactus" element={ <Contact /> } />
                  <Route path="*" element={<Navigate replace to="/home" />} />
               </Routes>               
               <Footer />
