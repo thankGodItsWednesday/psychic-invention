@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function RenderLeader({leader}){
     
-        return (
+       /*  return (
             <Media tag="li">
               <Media left middle className='col-3'>
                   <Media object src={leader.image} alt={leader.name} />
@@ -14,6 +14,21 @@ function RenderLeader({leader}){
                 <p>{leader.description}</p>
               </Media>
             </Media>
+        ); */
+        return (
+            <li>
+                <div className="d-flex">
+                    <div className='flex-shrink-0'>
+                        <img src={leader.image} alt={leader.name}></img>
+                    </div>
+                    <div className='flex-grow-1 ms-3'>
+                        <h3>{leader.name}</h3>
+                        <h5>{leader.designation}</h5>
+                        <p>{leader.description}</p>
+                    </div>
+                </div>
+            </li>
+
         );
 
 }
@@ -83,9 +98,9 @@ const About = (props) => {
                     <h2>Corporate Leadership</h2>
                 </div>
                 <div className="col-12">
-                    <Media list>
+                    <ul>
                         {leaders}
-                    </Media>
+                    </ul>
                 </div>
             </div>
         </div>
