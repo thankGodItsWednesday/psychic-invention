@@ -1,15 +1,16 @@
 //import React, { Component } from 'react';
-import React, {useState, useEffect} from 'react';
+import React, { useState } from 'react';
 import Home from './HomeComponent';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import Menu from './MenuComponent';
 import Contact from './ContactComponent';
+import About from './AboutComponent';
 import { DISHES } from '../shared/dishes';
 import { COMMENTS } from '../shared/comments';
 import { LEADERS } from '../shared/leaders';
 import { PROMOTIONS } from '../shared/promotions';
-import { Routes, Route, Navigate, useParams, useMatch } from 'react-router-dom';
+import { Routes, Route, Navigate, useParams } from 'react-router-dom';
 import DishDetail from './DishdetailComponent';
 
 /* require('react-dom');
@@ -28,10 +29,10 @@ const Main = () => {
       leaders: LEADERS,
       promotions: PROMOTIONS
     }; */
-    let [dishes, setDishes] = useState(DISHES)
-    let [comments, setComments] = useState(COMMENTS)
-    let [leaders, setLeaders] = useState(LEADERS)
-    let [promotions, setPromotions] = useState(PROMOTIONS)
+    let [dishes] = useState(DISHES)
+    let [comments] = useState(COMMENTS)
+    let [leaders] = useState(LEADERS)
+    let [promotions] = useState(PROMOTIONS)
   
 
   //render() {
@@ -48,8 +49,8 @@ const Main = () => {
       const { dishId } = useParams();
       //console.log( "dishId: ", dishId);
       return(
-          <DishDetail dish={dishes.filter((dish) => dish.id == dishId)[0]} 
-            comments={comments.filter((comment) => comment.dishId == dishId)} />
+          <DishDetail dish={dishes.filter((dish) => dish.id === parseInt(dishId))[0]} 
+            comments={comments.filter((comment) => comment.dishId === parseInt(dishId))} />
       );
     
     }
@@ -63,6 +64,7 @@ const Main = () => {
                  <Route exact path="/menu" element={ (() => <Menu dishes={dishes}/>)() } />
                  <Route path="/menu/:dishId" element={<DishWithId />} />
                  <Route path="/contactus" element={ <Contact /> } />
+                 <Route path="/aboutus" element={ <About leaders={leaders}/> } />
                  <Route path="*" element={<Navigate replace to="/home" />} />
               </Routes>               
               <Footer />
