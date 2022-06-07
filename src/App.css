@@ -35,3 +35,12 @@ address{
 ul {
     list-style-type: none;
 }
+
+.modal-title, .form-label {
+    color: black;
+}
+
+#LoginButton {
+    align-content: self;
+    
+}
