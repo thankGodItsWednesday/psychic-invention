@@ -15,7 +15,7 @@
     margin:0px auto;
     padding: 20px 0px 20px 0px;
 }
-.fade {
+#fade {
     padding:70px 30px 70px 30px;
     margin:0px auto;
     background: #9575CD ;
@@ -40,7 +40,10 @@ ul {
     color: black;
 }
 
-#LoginButton {
-    align-content: self;
-    
+textarea {
+    width: 100%;
+}
+
+.form-control {
+    appearance: menulist-button;
 }
