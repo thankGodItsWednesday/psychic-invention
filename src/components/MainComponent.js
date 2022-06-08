@@ -8,7 +8,10 @@ import Contact from './ContactComponent';
 import About from './AboutComponent';
 import { Routes, Route, Navigate, useParams } from 'react-router-dom';
 import DishDetail from './DishdetailComponent';
-import { Reducer } from '../redux/reducer';
+import { Dishes } from '../redux/dishes';
+import { Comments } from '../redux/comments';
+import { Promotions } from '../redux/promotions';
+import { Leaders } from '../redux/leaders';
 import { connect } from 'react-redux';
 /* require('react-dom');
 window.React2 = require('react');
@@ -53,9 +56,9 @@ const Main = () => {
     
     const HomePage = () => {
       return(
-        <Home dish={Reducer().dishes.filter((dish) => dish.featured)[0]}
-         promotion={Reducer().promotions.filter((promo) => promo.featured)[0]}
-         leader={Reducer().leaders.filter((lead) => lead.featured)[0]}/>
+        <Home dish={Dishes().filter((dish) => dish.featured)[0]}
+         promotion={Promotions().filter((promo) => promo.featured)[0]}
+         leader={Leaders().filter((lead) => lead.featured)[0]}/>
       );
     }
     
@@ -66,8 +69,8 @@ const Main = () => {
 
       //console.log( "dishId: ", dishId);
       return(
-          <DishDetail dish={Reducer().dishes.filter((dish) => dish.id === parseInt(dishId))[0]} 
-            comments={Reducer().comments.filter((comment) => comment.dishId === parseInt(dishId))} />
+          <DishDetail dish={Dishes().filter((dish) => dish.id === parseInt(dishId))[0]} 
+            comments={Comments().filter((comment) => comment.dishId === parseInt(dishId))} />
       );
     
     }
@@ -78,10 +81,10 @@ const Main = () => {
               <Header />
               <Routes>
                  <Route path="/home" element={ <HomePage /> } />
-                 <Route exact path="/menu" element={ (() => <Menu dishes={Reducer().dishes}/>)() } />
+                 <Route exact path="/menu" element={ (() => <Menu dishes={Dishes()}/>)() } />
                  <Route path="/menu/:dishId" element={<DishWithId />} />
                  <Route path="/contactus" element={ <Contact /> } />
-                 <Route path="/aboutus" element={ <About leaders={Reducer().leaders}/> } />
+                 <Route path="/aboutus" element={ <About leaders={Leaders()}/> } />
                  <Route path="*" element={<Navigate replace to="/home" />} />
               </Routes>               
               <Footer />
